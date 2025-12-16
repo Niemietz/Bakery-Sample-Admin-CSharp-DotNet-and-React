@@ -1,6 +1,6 @@
 ﻿# 📝 Bakery Website Sample Administration Panel
 
-An edit content form panel for the sample of a Bakery website in Node.js + Express
+An edit content form panel for the sample of a Bakery website in C# .NET
 
 ## 📃 Pages
 
