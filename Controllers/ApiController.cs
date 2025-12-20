@@ -1,11 +1,9 @@
-﻿using BakerySample.Models;
+﻿using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace BakerySample.Controllers;
 
 [ApiController]
-[Route("[controller]")]
 public class ApiController : ControllerBase
 {
     private readonly ILogger<ApiController> _logger;
@@ -25,12 +23,13 @@ public class ApiController : ControllerBase
         json = json.Replace("'", "\""); // Replace single quotes with double quotes
 
         // Remove invalid characters (additional cleaning can be added here)
-        json = System.Text.RegularExpressions.Regex.Replace(json, @"[^\u0000-\u007F]+", ""); // Remove non-ASCII characters
+        json = Regex.Replace(json, @"[^\u0000-\u007F]+", ""); // Remove non-ASCII characters
 
         return json;
     }
 
     [HttpGet]
+    [Route("data/")]
     public IActionResult Data()
     {
         var json = "{}";
