@@ -1,10 +1,36 @@
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
+builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevCors", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:3001", "http://127.0.0.1:3001")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 var app = builder.Build();
 
+app.UseCors("DevCors");
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+// API routes
+//app.MapControllers();
+
+app.MapControllerRoute(
+    name: "api",
+    pattern: "{controller=Api}/{action=Data}"
+);
+
+// React fallback (important!)
+app.MapFallbackToFile("index.html");
+
+app.Run();
+
+/*
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -36,3 +62,4 @@ app.MapControllerRoute(
 );
 
 app.Run();
+*/

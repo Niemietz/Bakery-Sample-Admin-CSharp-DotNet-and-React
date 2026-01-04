@@ -6,22 +6,33 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
-    <ItemGroup>
+    <!--<ItemGroup>
       <None Update="Views\Home\Index.cshtml.css">
         <DependentUpon>Index.cshtml</DependentUpon>
       </None>
       <None Update="Views\Home\Index.cshtml.js">
         <DependentUpon>Index.cshtml</DependentUpon>
       </None>
-    </ItemGroup>
+    </ItemGroup>-->
 
-    <ItemGroup>
+    <!--<ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Api\Api.cshtml" />
       <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
-    </ItemGroup>
+    </ItemGroup>-->
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include=".run\Build &amp; Run.run.xml" />
+      <Content Include=".run\Dotnet Run.run.xml" />
+      <Content Include=".run\React Build.run.xml" />
+      <Content Include=".run\React Dev.run.xml" />
+    </ItemGroup>
+
+    <Target Name="BuildReact" BeforeTargets="Publish">
+        <Exec WorkingDirectory="frontend" Command="npm install" />
+        <Exec WorkingDirectory="frontend" Command="npm run build" />
+    </Target>
 </Project>

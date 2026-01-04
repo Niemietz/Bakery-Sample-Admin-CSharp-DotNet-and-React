@@ -1,4 +1,4 @@
-namespace BakerySample.Models;
+namespace BakerySampleAdmin.Models;
 
 public class HomeViewModel
 {

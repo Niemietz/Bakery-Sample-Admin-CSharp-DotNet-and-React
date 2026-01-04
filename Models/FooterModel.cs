@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace BakerySample.Models;
+namespace BakerySampleAdmin.Models;
 
 public class FooterModel
 {
